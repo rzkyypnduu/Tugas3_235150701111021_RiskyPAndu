@@ -26,6 +26,11 @@ public class PegawaiHarian extends Pegawai {
 
     @Override
     public double gaji() {
-        return upahPerJam * totalJam;
+            if (totalJam <= 40){
+                return upahPerJam*totalJam;
+            }else{
+                return (upahPerJam*40) + (upahPerJam * (totalJam-40)*1.5);
+        }
+        
     }
 }
