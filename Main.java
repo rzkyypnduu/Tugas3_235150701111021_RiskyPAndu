@@ -1,63 +1,55 @@
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Masukkan data pegawai tetap:");
-        System.out.print("Nama: ");
-        String namaTetap = scanner.nextLine();
-        System.out.print("No. KTP: ");
-        String ktpTetap = scanner.nextLine();
-        System.out.print("Upah: ");
-        double upahTetap = scanner.nextDouble();
-        scanner.nextLine(); // Membersihkan buffer
-
-        System.out.println("\nMasukkan data pegawai harian:");
-        System.out.print("Nama: ");
-        String namaHarian = scanner.nextLine();
-        System.out.print("No. KTP: ");
-        String ktpHarian = scanner.nextLine();
-        System.out.print("Upah per Jam: ");
-        double upahPerJam = scanner.nextDouble();
-        System.out.print("Total Jam Kerja: ");
-        int totalJam = scanner.nextInt();
-        scanner.nextLine(); // Membersihkan buffer
-
-        System.out.println("\nMasukkan data sales:");
-        System.out.print("Nama: ");
-        String namaSales = scanner.nextLine();
-        System.out.print("No. KTP: ");
-        String ktpSales = scanner.nextLine();
-        System.out.print("Total Penjualan: ");
-        int penjualan = scanner.nextInt();
-        System.out.print("Besaran Komisi: ");
-        double komisi = scanner.nextDouble();
-
-        Pegawai pegawai1 = new PegawaiTetap(namaTetap, ktpTetap, upahTetap);
-        Pegawai pegawai2 = new PegawaiHarian(namaHarian, ktpHarian, upahPerJam, totalJam);
-        Pegawai pegawai3 = new Sales(namaSales, ktpSales, penjualan, komisi);
-
-        System.out.println("\nInformasi Pegawai:");
-        System.out.println("Pegawai Tetap:");
-        System.out.println("No. KTP: " + ktpTetap);
-        System.out.println("Upah: " + upahTetap);
-        System.out.println("Pendapatan: " + pegawai1.gaji());
-        System.out.println();
-
-        System.out.println("Pegawai Harian:");
-        System.out.println("No. KTP: " + ktpHarian);
-        System.out.println("Upah/Jam: " + upahPerJam);
-        System.out.println("Total Jam Kerja: " + totalJam);
-        System.out.println("Pendapatan: " + pegawai2.gaji());
-        System.out.println();
-
-        System.out.println("Sales:");
-        System.out.println("No. KTP: " + ktpSales);
-        System.out.println("Total Penjualan: " + penjualan);
-        System.out.println("Besaran Komisi: " + komisi);
-        System.out.println("Pendapatan: " + pegawai3.gaji());
-
-        scanner.close();
+        ArrayList<PegawaiTetap> listPTep = new ArrayList<>();
+        listPTep.add(new PegawaiTetap("Risky","3515027112230004",9000000));
+        listPTep.add(new PegawaiTetap("Pandu","3515021934030007",3400000));
+        listPTep.add(new PegawaiTetap("Widianto","3515027231810004",5000000));
+        
+        System.out.println("\n|==============| Daftar Pegawai Tetap |==============|\n");
+        for (int i = 0; i < listPTep.size(); i++) {
+            PegawaiTetap pTep = listPTep.get(i);
+            System.out.println("Nama\t\t: "+pTep.getNama());
+            System.out.println("No. KTP\t\t: " + pTep.getNoKTP());
+            System.out.println("Upah \t\t: " + pTep.getUpah());
+            System.out.printf("%s%.0f\n","Pendapatan\t: Rp ",pTep.gaji());
+            System.out.println("");
+        }
+        
+        ArrayList<PegawaiHarian> listPHar = new ArrayList<>();
+        
+        listPHar.add(new PegawaiHarian("Queena","3515021606080001",50000,6));
+        listPHar.add(new PegawaiHarian("Nadira","3515022606120008",80000,9));
+        listPHar.add(new PegawaiHarian("Sam","3515021237670001",90000,11));
+        
+        System.out.println("\n|==============| Daftar Pegawai Harian |==============|\n");
+        for (int i = 0; i < listPHar.size(); i++) {
+            PegawaiHarian pHar = listPHar.get(i);
+            System.out.println("Nama\t\t: "+pHar.getNama());
+            System.out.println("No. KTP\t\t: " + pHar.getNoKTP());
+            System.out.println("Upah Per Jam\t: Rp " + pHar.getUpahPerJam());
+            System.out.println("Total Jam Kerja\t: " + pHar.getTotalJam());
+            System.out.printf("%s%.0f\n","Pendapatan\t: Rp ",pHar.gaji());
+            System.out.println("");
+        }
+         
+        ArrayList<Sales> listSales = new ArrayList<>();
+            
+            listSales.add(new Sales("Charis","357512911040004",55,50000));
+            listSales.add(new Sales("Dwi","3575120156830008",19,40000));
+            listSales.add(new Sales("Yanto","3575124616790001",50,45000));
+            
+            System.out.println("\n|==================| Daftar Sales |==================|\n");
+            for (int i = 0; i < listSales.size(); i++) {
+                Sales pSal = listSales.get(i);
+                System.out.println("Nama\t\t: "+pSal.getNama());
+                System.out.println("No. KTP\t\t: " + pSal.getNoKTP());
+                System.out.println("Total Penjualan\t: " + pSal.getPenjualan());
+                System.out.println("Besaran Komisi\t: " + pSal.getKomisi());
+                System.out.printf("%s%.0f\n","Pendapatan\t: Rp ",pSal.gaji());
+                System.out.println("");
+            }
+            System.out.println("|=====================================================|\n");
     }
 }
